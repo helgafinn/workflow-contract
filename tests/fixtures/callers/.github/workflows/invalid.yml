@@ -1,0 +1,15 @@
+name: Invalid caller
+
+on:
+  pull_request:
+
+jobs:
+  deploy:
+    uses: ./.github/workflows/called.yml
+    permissions:
+      contents: none
+    with:
+      attempts: many
+      extra: true
+    secrets:
+      extra_secret: '${{ secrets.EXTRA }}'

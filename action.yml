@@ -1,0 +1,41 @@
+name: Surety — Reusable Workflow Contract Check
+description: Detect breaking workflow_call changes and invalid local callers before merge.
+author: helgafinn
+
+inputs:
+  base:
+    description: Git commit, branch, or tag to compare with. Defaults to the event base SHA.
+    required: false
+  root:
+    description: Repository root containing .github/workflows.
+    required: false
+    default: .
+  paths:
+    description: Optional newline-delimited repository-relative workflow paths to check.
+    required: false
+  validate-callers:
+    description: Validate jobs that call local reusable workflows.
+    required: false
+    default: 'true'
+  fail-on:
+    description: Failure threshold — breaking, warning, or never.
+    required: false
+    default: breaking
+
+outputs:
+  breaking-changes:
+    description: Number of breaking contract changes.
+  caller-errors:
+    description: Number of invalid local caller findings.
+  warnings:
+    description: Number of warning-level findings.
+  passed:
+    description: Whether the configured compatibility policy passed.
+
+runs:
+  using: node24
+  main: action/index.cjs
+
+branding:
+  icon: shield
+  color: blue

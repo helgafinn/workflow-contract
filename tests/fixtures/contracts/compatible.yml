@@ -1,0 +1,47 @@
+name: Deploy application
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: Deployment environment
+        required: false
+        type: string
+      retries:
+        description: Retry count
+        type: number
+        default: 3
+      dry_run:
+        description: Plan without deploying
+        type: boolean
+        default: false
+    secrets:
+      azure_credentials:
+        description: Azure credentials
+        required: true
+      notification_token:
+        required: false
+    outputs:
+      deployment_url:
+        description: Deployed application URL
+        value: '${{ jobs.deploy.outputs.url }}'
+      release_id:
+        description: Release identifier
+        value: '${{ jobs.deploy.outputs.release_id }}'
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    outputs:
+      url: '${{ steps.result.outputs.url }}'
+      release_id: '${{ steps.result.outputs.release_id }}'
+    steps:
+      - id: result
+        run: echo "url=https://example.invalid" >> "$GITHUB_OUTPUT"

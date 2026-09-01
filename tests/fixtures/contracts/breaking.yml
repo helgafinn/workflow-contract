@@ -1,0 +1,29 @@
+name: Deploy application v2
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: Whether production is targeted
+        required: true
+        type: boolean
+      region:
+        description: Azure region
+        required: true
+        type: string
+    secrets:
+      subscription_id:
+        required: true
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: none
+    steps:
+      - run: echo deploy

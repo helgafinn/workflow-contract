@@ -1,0 +1,23 @@
+name: Called deployment
+
+on:
+  workflow_call:
+    inputs:
+      target:
+        required: true
+        type: string
+      attempts:
+        required: true
+        type: number
+    secrets:
+      token:
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo deploy
