@@ -1,0 +1,10 @@
+# action/index.cjs is the esbuild bundle of src/action.ts. It has to be
+# committed because GitHub runs an Action straight from the repository without
+# installing dependencies, but it is build output, not source.
+#
+# Marking it generated keeps two things honest:
+#   - language stats describe the TypeScript in src/ instead of reporting the
+#     repository as ~93% JavaScript
+#   - a 1.1 MB single-line bundle collapses in diffs rather than burying the
+#     reviewable change in a pull request
+action/index.cjs linguist-generated=true
