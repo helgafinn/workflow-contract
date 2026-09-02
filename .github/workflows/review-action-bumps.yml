@@ -1,0 +1,27 @@
+name: Review action bumps
+
+# Actions here are pinned to commit SHAs, and Dependabot bumps those pins. A
+# 40-character hash carries no information, so the bump gets reviewed rather
+# than approved on trust.
+on:
+  pull_request:
+    paths:
+      - .github/workflows/**
+      - action.yml
+
+permissions:
+  contents: read
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          # A shallow clone has no base commit to compare against.
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: helgafinn/action-diff@v1
+        with:
+          fail-on: never
