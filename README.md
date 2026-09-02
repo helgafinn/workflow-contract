@@ -1,5 +1,9 @@
 # workflow-contract
 
+[![CI](https://github.com/helgafinn/workflow-contract/actions/workflows/ci.yml/badge.svg)](https://github.com/helgafinn/workflow-contract/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/helgafinn/workflow-contract?sort=semver)](https://github.com/helgafinn/workflow-contract/releases/latest)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 Detect breaking changes in reusable GitHub Actions workflows.
 
 A reusable workflow's `on.workflow_call` block is a public API: every repository that calls it depends on those inputs, secrets, outputs, and permissions. Nothing in GitHub Actions tells you when you break it, so the failure surfaces in someone else's pipeline. `workflow-contract` treats that block as a versioned contract, compares it against a Git base, and reports breaking changes before the pull request merges. It also validates the callers of local reusable workflows.
