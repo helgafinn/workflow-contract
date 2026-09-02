@@ -9,9 +9,9 @@ import { isEntryModule } from '../src/cli.js';
 const cliPath = resolve(dirname(fileURLToPath(import.meta.url)), '../src/cli.ts');
 
 test('recognizes an npm-style symlink as the CLI entry module', (context) => {
-  const temporaryRoot = mkdtempSync(resolve(tmpdir(), 'surety-cli-'));
+  const temporaryRoot = mkdtempSync(resolve(tmpdir(), 'lesprit-cli-'));
   context.after(() => rmSync(temporaryRoot, { recursive: true, force: true }));
-  const linkedEntry = resolve(temporaryRoot, 'surety');
+  const linkedEntry = resolve(temporaryRoot, 'lesprit');
   symlinkSync(cliPath, linkedEntry);
 
   assert.equal(isEntryModule(pathToFileURL(cliPath).href, linkedEntry), true);

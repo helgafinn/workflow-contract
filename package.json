@@ -1,5 +1,5 @@
 {
-  "name": "surety",
+  "name": "lesprit",
   "version": "0.1.0",
   "description": "Protect reusable GitHub Actions workflows from breaking contract changes.",
   "type": "module",
@@ -11,7 +11,7 @@
   },
   "packageManager": "npm@11.19.0",
   "bin": {
-    "surety": "./dist/cli.js"
+    "lesprit": "./dist/cli.js"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -59,12 +59,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/helgafinn/surety.git"
+    "url": "git+https://github.com/helgafinn/lesprit.git"
   },
   "bugs": {
-    "url": "https://github.com/helgafinn/surety/issues"
+    "url": "https://github.com/helgafinn/lesprit/issues"
   },
-  "homepage": "https://github.com/helgafinn/surety#readme",
+  "homepage": "https://github.com/helgafinn/lesprit#readme",
   "publishConfig": {
     "access": "public"
   }

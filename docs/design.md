@@ -1,8 +1,8 @@
-# Surety MVP design
+# L’Esprit MVP design
 
 ## Goal
 
-Surety prevents a reusable GitHub Actions workflow from changing its public interface without the pull request showing the effect. It treats `on.workflow_call` as an API contract and performs static, read-only analysis.
+L’Esprit prevents a reusable GitHub Actions workflow from changing its public interface without the pull request showing the effect. It treats `on.workflow_call` as an API contract and performs static, read-only analysis.
 
 ## Supported surfaces
 
@@ -47,13 +47,13 @@ Description-only edits are excluded from compatibility results.
 ## CLI
 
 ```text
-surety check --base <git-ref> [--root <path>] [--path <workflow>]...
-             [--format pretty|json|github]
-             [--fail-on breaking|warning|never]
-             [--no-validate-callers]
-surety diff <before.yml> <after.yml> [--format ...] [--fail-on ...]
-surety snapshot <workflow.yml> [--output <file|->]
-surety validate [--root <path>] [--format ...] [--fail-on ...]
+lesprit check --base <git-ref> [--root <path>] [--path <workflow>]...
+              [--format pretty|json|github]
+              [--fail-on breaking|warning|never]
+              [--no-validate-callers]
+lesprit diff <before.yml> <after.yml> [--format ...] [--fail-on ...]
+lesprit snapshot <workflow.yml> [--output <file|->]
+lesprit validate [--root <path>] [--format ...] [--fail-on ...]
 ```
 
 Exit code `0` means the selected policy passed, `1` means contract or caller findings failed the policy, and `2` means invocation/parsing/runtime failure.

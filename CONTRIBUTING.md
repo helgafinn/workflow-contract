@@ -1,4 +1,4 @@
-# Contributing to Surety
+# Contributing to L’Esprit
 
 ## Development setup
 
