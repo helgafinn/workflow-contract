@@ -1,6 +1,6 @@
 {
   "name": "workflow-contract",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Detect breaking changes in reusable GitHub Actions workflows before they reach dependent repositories.",
   "type": "module",
   "license": "MIT",
