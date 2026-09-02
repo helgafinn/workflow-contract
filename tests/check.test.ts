@@ -19,9 +19,9 @@ const fixtures = resolve(dirname(fileURLToPath(import.meta.url)), 'fixtures/cont
 
 const gitEnvironment = {
   ...process.env,
-  GIT_AUTHOR_NAME: 'lesprit test',
+  GIT_AUTHOR_NAME: 'workflow-contract test',
   GIT_AUTHOR_EMAIL: 'test@example.invalid',
-  GIT_COMMITTER_NAME: 'lesprit test',
+  GIT_COMMITTER_NAME: 'workflow-contract test',
   GIT_COMMITTER_EMAIL: 'test@example.invalid',
 };
 
@@ -30,7 +30,7 @@ function git(root: string, ...args: string[]): void {
 }
 
 test('compares a Git base revision against the working tree', (context) => {
-  const root = mkdtempSync(resolve(tmpdir(), 'lesprit-'));
+  const root = mkdtempSync(resolve(tmpdir(), 'workflow-contract-'));
   context.after(() => rmSync(root, { recursive: true, force: true }));
 
   const workflowDirectory = resolve(root, '.github/workflows');

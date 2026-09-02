@@ -16,7 +16,7 @@ function plural(count: number, singular: string): string {
 }
 
 export function formatPretty(report: CheckReport): string {
-  const lines = ['L’Esprit'];
+  const lines = ['workflow-contract'];
   if (report.base !== null) {
     lines.push(`Base: ${report.base}`);
   }
@@ -84,7 +84,7 @@ export function formatGitHub(report: CheckReport): string {
     lines.push(issueAnnotation(item));
   }
   if (lines.length === 0) {
-    lines.push('::notice title=L’Esprit::No compatibility problems found.');
+    lines.push('::notice title=workflow-contract::No compatibility problems found.');
   }
   return `${lines.join('\n')}\n`;
 }

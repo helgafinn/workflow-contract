@@ -1,4 +1,4 @@
-# Contributing to L’Esprit
+# Contributing to workflow-contract
 
 ## Development setup
 

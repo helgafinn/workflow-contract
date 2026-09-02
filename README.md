@@ -1,8 +1,8 @@
-# L’Esprit
+# workflow-contract
 
-Contract tests for reusable GitHub Actions workflows.
+Detect breaking changes in reusable GitHub Actions workflows.
 
-**L’Esprit**—French for “the spirit” or “the mind”—is the reasoning layer that protects workflow contracts. It treats `on.workflow_call` as a public API and detects breaking changes to inputs, secrets, outputs, and explicitly requested permissions before a pull request reaches dependent repositories. It also validates callers of local reusable workflows.
+A reusable workflow's `on.workflow_call` block is a public API: every repository that calls it depends on those inputs, secrets, outputs, and permissions. Nothing in GitHub Actions tells you when you break it, so the failure surfaces in someone else's pipeline. `workflow-contract` treats that block as a versioned contract, compares it against a Git base, and reports breaking changes before the pull request merges. It also validates the callers of local reusable workflows.
 
 The analysis commands are static and read-only: they do not execute workflows, send repository content to a service, require a token, or collect telemetry. `snapshot --output` writes only to the destination explicitly selected by the user.
 
@@ -42,7 +42,7 @@ Description-only edits do not produce compatibility findings.
 After the first npm release:
 
 ```bash
-npm install --save-dev lesprit
+npm install --save-dev workflow-contract
 ```
 
 From a source checkout:
@@ -58,13 +58,13 @@ node dist/cli.js --help
 Compare every reusable workflow at a base revision with the working tree and validate local callers:
 
 ```bash
-npx lesprit check --base origin/main
+npx workflow-contract check --base origin/main
 ```
 
 Limit comparison to selected workflow files:
 
 ```bash
-npx lesprit check \
+npx workflow-contract check \
   --base origin/main \
   --path .github/workflows/deploy.yml \
   --path .github/workflows/test.yml
@@ -73,29 +73,29 @@ npx lesprit check \
 Compare two files without a Git repository:
 
 ```bash
-npx lesprit diff before.yml after.yml
+npx workflow-contract diff before.yml after.yml
 ```
 
 Extract a deterministic contract snapshot:
 
 ```bash
-npx lesprit snapshot .github/workflows/deploy.yml \
+npx workflow-contract snapshot .github/workflows/deploy.yml \
   --output deploy.contract.json
 ```
 
 Validate current local callers only:
 
 ```bash
-npx lesprit validate
+npx workflow-contract validate
 ```
 
 ### Output and failure policy
 
 ```bash
-npx lesprit check --base origin/main --format json
-npx lesprit check --base origin/main --format github
-npx lesprit check --base origin/main --fail-on warning
-npx lesprit check --base origin/main --fail-on never
+npx workflow-contract check --base origin/main --format json
+npx workflow-contract check --base origin/main --format github
+npx workflow-contract check --base origin/main --fail-on warning
+npx workflow-contract check --base origin/main --fail-on never
 ```
 
 Formats are `pretty`, `json`, and `github`. `--fail-on breaking` is the default. Exit codes are:
@@ -130,7 +130,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: helgafinn/lesprit@v1
+      - uses: helgafinn/workflow-contract@v1
         with:
           fail-on: breaking
           validate-callers: true
@@ -139,7 +139,7 @@ jobs:
 The action automatically uses `pull_request.base.sha` or the push event's `before` SHA. Override it when necessary:
 
 ```yaml
-      - uses: helgafinn/lesprit@v1
+      - uses: helgafinn/workflow-contract@v1
         id: contract
         with:
           base: origin/main
@@ -195,7 +195,7 @@ import {
   diffContracts,
   extractWorkflowContract,
   runCheck,
-} from 'lesprit';
+} from 'workflow-contract';
 ```
 
 ## Development

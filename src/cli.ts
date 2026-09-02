@@ -10,15 +10,15 @@ import { extractWorkflowContract, serializeContract } from './parse.js';
 import type { FailOn, OutputFormat } from './types.js';
 import { VERSION } from './version.js';
 
-const HELP = `lesprit ${VERSION}
+const HELP = `workflow-contract ${VERSION}
 
 Detect breaking changes in reusable GitHub Actions workflows.
 
 Usage:
-  lesprit check --base <git-ref> [options]
-  lesprit diff <before.yml> <after.yml> [options]
-  lesprit snapshot <workflow.yml> [--output <file|->]
-  lesprit validate [options]
+  workflow-contract check --base <git-ref> [options]
+  workflow-contract diff <before.yml> <after.yml> [options]
+  workflow-contract snapshot <workflow.yml> [--output <file|->]
+  workflow-contract validate [options]
 
 Commands:
   check       Compare workflow_call contracts at a Git base against the working tree.
@@ -323,9 +323,9 @@ export function main(argv = process.argv.slice(2)): number {
     }
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    process.stderr.write(`lesprit: ${message}\n`);
+    process.stderr.write(`workflow-contract: ${message}\n`);
     if (error instanceof UsageError) {
-      process.stderr.write('Run lesprit --help for usage.\n');
+      process.stderr.write('Run workflow-contract --help for usage.\n');
     }
     return error instanceof WorkflowContractError ? 2 : 2;
   }

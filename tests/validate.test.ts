@@ -28,7 +28,7 @@ test('validates local caller inputs, secrets, literal types, and permission caps
 });
 
 test('uses effective job permissions instead of combining an overridden workflow default', (context) => {
-  const temporaryRoot = mkdtempSync(resolve(tmpdir(), 'lesprit-permissions-'));
+  const temporaryRoot = mkdtempSync(resolve(tmpdir(), 'workflow-contract-permissions-'));
   context.after(() => rmSync(temporaryRoot, { recursive: true, force: true }));
   const workflows = resolve(temporaryRoot, '.github/workflows');
   mkdirSync(workflows, { recursive: true });
@@ -69,7 +69,7 @@ jobs:
 });
 
 test('rejects traversal and symlink local workflow references before reading them', (context) => {
-  const temporaryRoot = mkdtempSync(resolve(tmpdir(), 'lesprit-paths-'));
+  const temporaryRoot = mkdtempSync(resolve(tmpdir(), 'workflow-contract-paths-'));
   context.after(() => rmSync(temporaryRoot, { recursive: true, force: true }));
   const workflows = resolve(temporaryRoot, '.github/workflows');
   mkdirSync(workflows, { recursive: true });

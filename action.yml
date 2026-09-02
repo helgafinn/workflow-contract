@@ -1,4 +1,4 @@
-name: L’Esprit — Reusable Workflow Contract Check
+name: Reusable Workflow Contract Check
 description: Detect breaking workflow_call changes and invalid local callers before merge.
 author: helgafinn
 

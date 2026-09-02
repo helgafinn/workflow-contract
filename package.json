@@ -1,7 +1,7 @@
 {
-  "name": "lesprit",
+  "name": "workflow-contract",
   "version": "0.1.0",
-  "description": "Protect reusable GitHub Actions workflows from breaking contract changes.",
+  "description": "Detect breaking changes in reusable GitHub Actions workflows before they reach dependent repositories.",
   "type": "module",
   "license": "MIT",
   "private": false,
@@ -11,7 +11,7 @@
   },
   "packageManager": "npm@11.19.0",
   "bin": {
-    "lesprit": "./dist/cli.js"
+    "workflow-contract": "./dist/cli.js"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -52,19 +52,27 @@
   },
   "keywords": [
     "github-actions",
+    "actions",
+    "workflow",
+    "workflow-call",
+    "reusable-workflow",
     "reusable-workflows",
-    "ci",
+    "breaking-changes",
+    "backwards-compatibility",
+    "api-compatibility",
     "contract-testing",
+    "lint",
+    "ci",
     "developer-tools"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/helgafinn/lesprit.git"
+    "url": "git+https://github.com/helgafinn/workflow-contract.git"
   },
   "bugs": {
-    "url": "https://github.com/helgafinn/lesprit/issues"
+    "url": "https://github.com/helgafinn/workflow-contract/issues"
   },
-  "homepage": "https://github.com/helgafinn/lesprit#readme",
+  "homepage": "https://github.com/helgafinn/workflow-contract#readme",
   "publishConfig": {
     "access": "public"
   }
